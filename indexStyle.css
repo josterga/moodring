@@ -1,0 +1,99 @@
+.parent{
+  width: 100vw;
+  height: auto;
+  display: grid;
+  grid-template-rows: 20vh, 20vh, 20vh, 20vh, 20vh;
+  grid-template-columns: 33vw, 33vw;
+  margin-left: -9px;
+}
+
+#stressed{
+  background: black;
+  color: white;
+  grid-column: 1;
+  grid-row: 1;
+}
+
+#nervous{
+  background: red;
+  color: white;
+  grid-column: 1;
+  grid-row: 2;
+}
+
+#unsettled{
+  background: orange;
+  color: white;
+  grid-column: 1;
+  grid-row: 3;
+}
+
+#active{
+  background: green;
+  color: white;
+  grid-column: 1;
+  grid-row: 4;
+}
+
+#relaxed{
+  background: blue;
+  color: white;
+  grid-column: 1;
+  grid-row: 5;
+}
+
+#lovable{
+  background: darkblue;
+  color: white;
+  grid-column: 2;
+  grid-row: 1;
+}
+
+#romantic{
+  background: indigo;
+  color: white;
+  grid-column: 2;
+  grid-row: 2;
+}
+
+#happy{
+  background: pink;
+  color: black;
+  grid-column: 2;
+  grid-row: 3;
+}
+
+#tired{
+  background: yellow;
+  color: black;
+  grid-column: 2;
+  grid-row: 4;
+}
+
+#calm{
+  background: purple;
+  color: white;
+  grid-column: 2;
+  grid-row: 5;
+}
+
+.child{
+  position: relative;
+  text-align: center;
+}
+
+.button{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 50px;
+  background: inherit;
+  color: inherit;
+  font-size: 125%;
+}
+
+.button:active{
+  background: white;
+  color: black;
+
+}

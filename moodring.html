@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel = "stylesheet" type = "text/css" href = "indexStyle.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  	<title>Mood Ring</title>
+  </head>
+  <body>
+    <div class="parent">
+      <div class="child" id="stressed"><button class="button" onclick="logMood(this.parentNode.id)">stressed</button></div>
+      <div class="child" id="nervous"><button class="button" onclick="logMood(this.parentNode.id)">nervous</button></div>
+      <div class="child" id="unsettled"><button class="button" onclick="logMood(this.parentNode.id)">unsettled</button></div>
+      <div class="child" id="active"><button class="button" onclick="logMood(this.parentNode.id)">active</button></div>
+      <div class="child" id="relaxed"><button class="button" onclick="logMood(this.parentNode.id)">relaxed</button></div>
+      <div class="child" id="lovable"><button class="button" onclick="logMood(this.parentNode.id)">lovable</button></div>
+      <div class="child" id="romantic"><button class="button" onclick="logMood(this.parentNode.id)">romantic</button></div>
+      <div class="child" id="happy"><button class="button" onclick="logMood(this.parentNode.id)">happy</button></div>
+      <div class="child" id="tired"><button class="button" onclick="logMood(this.parentNode.id)">tired</button></div>
+      <div class="child" id="calm"><button class="button" onclick="logMood(this.parentNode.id)">calm</button></div>
+    </div>
+  </body>
+
+  <script>
+    var log = new Date();
+    var m = "null"
+    var data = [{"date" : log, "mood" : m}, {"date" : log, "mood" : m}];
+
+    function logMood(mood){
+      var time = new Date();
+      //console.log(time.getHours());
+      //console.log(mood);
+      if(data[data.length-1]["date"].getHours() == time.getHours()){
+        data.pop();
+        if(data.length > 0){
+          data.push({"date" : time, "mood" : mood});
+        }
+        else{
+          data = [{"date" : time, "mood" : mood}];
+        }
+      }
+      else{
+        data.push({"date" : time, "mood" : mood});
+      }
+    }
+  </script>
+</html>
