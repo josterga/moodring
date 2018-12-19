@@ -2,9 +2,11 @@
   width: 100vw;
   height: auto;
   display: grid;
-  grid-template-rows: 20vh, 20vh, 20vh, 20vh, 20vh;
+  grid-template-rows: 15vh, 15vh, 15vh, 15vh, 15vh;
   grid-template-columns: 33vw, 33vw;
-  margin-left: -9px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
 }
 
 #stressed{

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel = "stylesheet" type = "text/css" href = "indexStyle.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+  	<title>Mood Ring</title>
+  </head>
+  <body>
+    <div class="parent">
+      <div class="child" id="stressed"><button class="button" onclick="logMood(this.parentNode.id)">stressed</button></div>
+      <div class="child" id="nervous"><button class="button" onclick="logMood(this.parentNode.id)">nervous</button></div>
+      <div class="child" id="unsettled"><button class="button" onclick="logMood(this.parentNode.id)">unsettled</button></div>
+      <div class="child" id="active"><button class="button" onclick="logMood(this.parentNode.id)">active</button></div>
+      <div class="child" id="relaxed"><button class="button" onclick="logMood(this.parentNode.id)">relaxed</button></div>
+      <div class="child" id="lovable"><button class="button" onclick="logMood(this.parentNode.id)">lovable</button></div>
+      <div class="child" id="romantic"><button class="button" onclick="logMood(this.parentNode.id)">romantic</button></div>
+      <div class="child" id="happy"><button class="button" onclick="logMood(this.parentNode.id)">happy</button></div>
+      <div class="child" id="tired"><button class="button" onclick="logMood(this.parentNode.id)">tired</button></div>
+      <div class="child" id="calm"><button class="button" onclick="logMood(this.parentNode.id)">calm</button></div>
+    </div>
+
+  <script>
+    var log0 = new Date();
+    var log = new Date();
+    var log1 = new Date();
+    var log2 = new Date();
+    var log3 = new Date();
+    var log4 = new Date();
+    var log5 = new Date();
+    var log6 = new Date();
+    var log7 = new Date();
+    var log8 = new Date();
+    log0.setHours(0);
+    log.setHours(1);
+    log1.setHours(2);
+    log2.setHours(3);
+    log3.setHours(4);
+    log4.setHours(5);
+    log5.setHours(6);
+    log6.setHours(7);
+    log7.setHours(8);
+    log8.setHours(9);
+    var m = "calm"
+    var data = [{"date" : log0, "mood" : "nervous"}, {"date" : log, "mood" : m},
+    {"date" : log1, "mood" : "romantic"}, {"date" : log2, "mood" : "relaxed"},{"date" : log3, "mood" : "active"},
+  {"date" : log4, "mood" : "unsettled"},{"date" : log5, "mood" : "happy"},
+{"date" : log6, "mood" : "stressed"},{"date" : log7, "mood" : "tired"}];
+
+    var width = screen.width;
+    var height = screen.height;
+
+    var x =  d3.scaleLinear().domain([0,24]).range([0,width]);
+
+    var svg = d3.select("body").append("svg")
+              .attr("width", width)
+              .attr("height", 100)
+            .append("g");
+
+    var rectangle = svg.append("rect")
+                         .attr("x",0)
+                         .attr("y", 0)
+                        .attr("width", width)
+                        .attr("height", 100)
+                        .style("fill", "white");
+
+    function drawViz(newData){
+          // svg.selectAll(".dot").remove();
+          // var c = svg.selectAll('.dot')
+          //             .data(newData)
+          //               .enter().append("circle")
+          //                .attr("class", "dot")
+          //                 .attr("r", 5)
+          //                .attr("cx", function(s) { return x( s["date"].getHours() ); })
+          //                .attr("cy", 50)
+          //                .style("fill", function(s){return getColor(s["mood"]);});
+
+           svg.selectAll("rectangle").remove();
+           var c = svg.selectAll('rectangle')
+                       .data(newData)
+                         .enter().append("rect")
+                          .attr("class", "rectangle")
+                          .attr("x", function(s) { return x( s["date"].getHours() ); })
+                          .attr("width", (width/24))
+                          .attr("y", 0)
+                          .attr("height", 100)
+                          .attr("stroke", "none")
+                          .style("fill", function(s){return getColor(s["mood"]);});
+
+   }
+
+   drawViz(data);
+
+    function getColor(mood){
+      if(mood == "stressed"){
+        return "black";
+      }
+      if(mood == "nervous"){
+        return "red";
+      }
+      if(mood == "unsettled"){
+        return "orange";
+      }
+      if(mood == "active"){
+        return "green";
+      }
+      if(mood == "relaxed"){
+        return "blue";
+      }
+      if(mood == "lovable"){
+        return "darkblue";
+      }
+      if(mood == "romantic"){
+        return "indigo";
+      }
+      if(mood == "happy"){
+        return "pink";
+      }
+      if(mood == "tired"){
+        return "yellow";
+      }
+      if(mood == "calm"){
+        return "purple";
+      }
+    }
+
+    function logMood(mood){
+      var time = new Date();
+      if(data[data.length-1]["date"].getHours() == time.getHours()){
+        data.pop();
+        if(data.length > 0){
+          data.push({"date" : time, "mood" : mood});
+        }
+        else{
+          data = [{"date" : time, "mood" : mood}];
+        }
+      }
+      else{
+        data.push({"date" : time, "mood" : mood});
+      }
+      drawViz(data);
+    }
+  </script>
+</body>
+</html>
